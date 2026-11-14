@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 0 200 100" preserveAspectRatio="xMidYMid slice"><defs>
+<radialGradient id="gk1" gradientUnits="userSpaceOnUse" cx="35" cy="28" r="125"><stop offset="0" stop-color="#C2977C"/><stop offset="1" stop-color="#47322A"/></radialGradient>
+<linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#182334"/><stop offset=".45" stop-color="#26324a"/><stop offset=".7" stop-color="#4a5571"/></linearGradient></defs>
+<rect x="-50" width="200" height="100" fill="url(#gk1)"/>
+<path d="M50 36 Q36 29 20 33 V71 Q35 67 50 73Z" fill="#FFF4E4"/><path d="M50 36 Q64 29 80 33 V71 Q65 67 50 73Z" fill="#FFF4E4" opacity=".9"/>
+<path d="M26 42 q10 -2 18 0 M26 49 q10 -2 18 0 M26 56 q10 -2 14 0" stroke="#C2977C" stroke-width="2" fill="none" stroke-linecap="round"/>
+<circle cx="59" cy="47" r="4.5" fill="#E5AE9F"/><circle cx="70" cy="47" r="4.5" fill="#E5AE9F"/><circle cx="64.5" cy="57" r="4.5" fill="#E5AE9F"/>
+<path d="M50 36 V73" stroke="#47322A" stroke-width="1" opacity=".3"/></svg>

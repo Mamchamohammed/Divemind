@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { navigation, storeLinks } from './config';
+import { downloadUrl, navigation } from './config';
 
 const A = '/assets/';
 
@@ -7,14 +7,11 @@ function Brand({ light = false }: { light?: boolean }) {
   return <a className={`brand ${light ? 'brand-light' : ''}`} href="#top" aria-label="DiveMind home"><img src={`${A}app-icon.png`} alt="" /><span>DiveMind</span></a>;
 }
 
-function StoreButton({ platform, compact = false }: { platform: 'android' | 'ios'; compact?: boolean }) {
-  const url = storeLinks[platform];
-  const android = platform === 'android';
-  return <a className={`store-button ${android ? 'store-button-primary' : 'store-button-secondary'} ${compact ? 'store-button-compact' : ''}`} href={url ?? '#download'} aria-label={`${android ? 'Google Play' : 'App Store'} download details`} {...(url ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
-    <span className="store-icon" aria-hidden="true">{android ? '▶' : '●'}</span>
-    <span><small>{url ? 'GET IT ON' : 'COMING SOON TO'}</small><strong>{android ? 'Google Play' : 'App Store'}</strong></span>
-    <span className="store-arrow" aria-hidden="true">↗</span>
-  </a>;
+function DownloadButton() {
+  const label = <><span className="store-icon" aria-hidden="true">↓</span><strong>Download app</strong></>;
+  return downloadUrl
+    ? <a className="store-button store-button-primary download-button" href={downloadUrl} target="_blank" rel="noopener noreferrer">{label}</a>
+    : <button className="store-button store-button-primary download-button" type="button" disabled>{label}</button>;
 }
 
 function Header() {
@@ -52,7 +49,7 @@ function AppScreen({ type, className = '' }: { type: 'home' | 'play' | 'profile'
 }
 
 function Hero() {
-  return <section className="hero" id="top"><div className="hero-horizon" /><div className="container hero-grid"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-line" /> A BETTER DAILY RITUAL</div><h1>Take a moment.<br /><em>Go deeper.</em></h1><p className="hero-lead">DiveMind turns brain training into a calm daily journey. Explore playful challenges, follow your progress, and keep coming back for your next dive.</p><div className="hero-actions"><StoreButton platform="android" /><StoreButton platform="ios" /></div><p className="availability">Built for Android and iOS · Store releases coming soon</p></div><div className="hero-visual" aria-label="DiveMind app interface previews"><div className="visual-caption visual-caption-top">01 / YOUR DAILY DIVE</div><AppScreen type="home" className="hero-phone-main" /><AppScreen type="play" className="hero-phone-back" /><div className="visual-caption visual-caption-bottom">A FRESH ROUTE THROUGH SIX SKILLS <span>↗</span></div></div></div><div className="container hero-bottom"><span>SCROLL TO EXPLORE <b>↓</b></span><span>MEMORY &nbsp;•&nbsp; FOCUS &nbsp;•&nbsp; LOGIC &nbsp;•&nbsp; MORE</span></div></section>;
+  return <section className="hero" id="top"><div className="hero-horizon" /><div className="container hero-grid"><div className="hero-copy"><div className="eyebrow"><span className="eyebrow-line" /> A BETTER DAILY RITUAL</div><h1>Take a moment.<br /><em>Go deeper.</em></h1><p className="hero-lead">DiveMind turns brain training into a calm daily journey. Explore playful challenges, follow your progress, and keep coming back for your next dive.</p><div className="hero-actions"><DownloadButton /></div><p className="availability">Built for Android and iOS</p></div><div className="hero-visual" aria-label="DiveMind app interface previews"><div className="visual-caption visual-caption-top">01 / YOUR DAILY DIVE</div><AppScreen type="home" className="hero-phone-main" /><AppScreen type="play" className="hero-phone-back" /><div className="visual-caption visual-caption-bottom">A FRESH ROUTE THROUGH SIX SKILLS <span>↗</span></div></div></div><div className="container hero-bottom"><span>SCROLL TO EXPLORE <b>↓</b></span><span>MEMORY &nbsp;•&nbsp; FOCUS &nbsp;•&nbsp; LOGIC &nbsp;•&nbsp; MORE</span></div></section>;
 }
 
 function Intro() {
@@ -81,11 +78,11 @@ function HowItWorks() {
 }
 
 function Closing() {
-  return <section className="closing" id="download"><div className="container closing-inner"><img src={`${A}app-icon.png`} alt="" /><p className="section-label">YOUR NEXT DIVE STARTS HERE</p><h2>Make space for<br /><em>a sharper you.</em></h2><p>Play a little. Discover a lot. DiveMind is preparing for release on Android and iOS.</p><div className="closing-actions"><StoreButton platform="android" /><StoreButton platform="ios" /></div>{!storeLinks.android && !storeLinks.ios && <span className="release-note">Store listings are not live yet. Check back for verified download links.</span>}</div></section>;
+  return <section className="closing" id="download"><div className="container closing-inner"><img src={`${A}app-icon.png`} alt="" /><p className="section-label">YOUR NEXT DIVE STARTS HERE</p><h2>Make space for<br /><em>a sharper you.</em></h2><p>Play a little. Discover a lot. DiveMind is preparing for release.</p>{/* Previous Google Play and App Store download buttons removed. */}<div className="closing-actions"><DownloadButton /></div>{!downloadUrl && <span className="release-note">Download link coming soon.</span>}</div></section>;
 }
 
 function Footer() {
-  return <footer className="footer"><div className="container footer-main"><div><Brand light /><p>A calmer way to challenge your mind, one dive at a time.</p></div><div><strong>EXPLORE</strong><a href="#app">The app</a><a href="#features">Features</a><a href="#showcase">Inside DiveMind</a><a href="#how-it-works">How it works</a></div><div><strong>GET THE APP</strong><a href="#download">Android</a><a href="#download">iOS</a><a href="/privacy.html">Privacy policy</a></div></div><div className="container footer-bottom"><span>© 2026 DiveMind. All rights reserved.</span><span>TAKE A MOMENT. GO DEEPER.</span></div></footer>;
+  return <footer className="footer"><div className="container footer-main"><div><Brand light /><p>A calmer way to challenge your mind, one dive at a time.</p></div><div><strong>EXPLORE</strong><a href="#app">The app</a><a href="#features">Features</a><a href="#showcase">Inside DiveMind</a><a href="#how-it-works">How it works</a></div><div><strong>GET THE APP</strong><a href="#download">Download app</a><a href="/privacy.html">Privacy policy</a><a href="/delete-account.html">Delete account</a></div></div><div className="container footer-bottom"><span>© 2026 DiveMind. All rights reserved.</span><span>TAKE A MOMENT. GO DEEPER.</span></div></footer>;
 }
 
 export default function App() { return <><Header /><main><Hero /><Intro /><Features /><Showcase /><Capture /><HowItWorks /><Closing /></main><Footer /></>; }
